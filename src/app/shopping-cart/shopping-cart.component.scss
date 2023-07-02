@@ -1,0 +1,20 @@
+
+.table {
+
+  .image {
+
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-size: cover;
+  }
+
+  tfoot {
+
+    th {
+
+      border-bottom: none;
+    }
+  }
+
+}

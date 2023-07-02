@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input #title="ngModel" [(ngModel)]="product.title"  ngModel name="title" type="text" class="form-control" id="title" required>
+          <div class="alert alert-danger" *ngIf="title.touched && title.invalid" role="alert">
+            Title is required
+          </div>
+
+        </div>
+
+        <div class="mb-3">
+          <label for="price">Price</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input #price="ngModel" [(ngModel)]="product.price" ngModel name="price" type="number" [min]="0" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+          </div>
+          <div class="alert alert-danger" *ngIf="price.touched && price.invalid" role="alert">
+            <div *ngIf="price.errors?.['required']">Price Is required</div>
+            <div *ngIf="price.errors?.['min']">Price should be 0 or higher</div>
+          </div>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select #category="ngModel" [(ngModel)]="product.category" ngModel name="category" class="form-select" id="category" aria-label="Default select example" required>
+            <option value=""></option>
+            <option *ngFor="let c of categories$ | async" [ngValue]="c.name">{{ c.name }}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="category.touched && category.invalid" role="alert">
+            category is required
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="imageUrl" class="form-label">Image Url</label>
+          <input #image="ngModel" [(ngModel)]="product.image" ngModel name="image" type="text" class="form-control" id="imageUrl" required>
+          <div class="alert alert-danger" *ngIf="image.touched && image.invalid" role="alert">
+            Image is required
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-dark me-3">Save</button>
+        <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+
+      </form>
+    </div>
+    <div class="col-md-6">
+       <product-card [product]="product" [show-actions]="false"></product-card>
+    </div>
+  </div>
+</div>
+
+
