@@ -1,0 +1,13 @@
+
+form {
+
+  .form-control:focus {
+
+       //box-shadow: darkseagreen;
+     //  outline-color: darkseagreen;
+
+       box-shadow: none;
+       border-color: darkseagreen;
+  }
+
+}

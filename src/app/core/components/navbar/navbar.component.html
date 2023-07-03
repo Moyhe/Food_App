@@ -1,0 +1,50 @@
+
+<nav class="navbar navbar-expand-lg  bg-body-tertiary rounded" aria-label="Eleventh navbar example">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link position-relative" routerLink="/shopping-cart">
+            <i class="fa-solid fa-cart-plus"></i>
+            <ng-container *ngIf="cart$ | async as cart ">
+              <span *ngIf="cart.totalItemCount > 0" class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-secondary">
+                {{ cart.totalItemCount }}
+          </span>
+            </ng-container>
+          </a>
+        </li>
+
+
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+
+       <ng-template #anonymousUser>
+        <li class="nav-item ms-3">
+          <a class="nav-link" routerLink="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+        </li>
+       </ng-template>
+        <li ngbDropdown *ngIf="appUser; else anonymousUser" class="nav-item  dropdown ms-4">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false">{{ appUser.name }}</a>
+          <ul ngbDropdownMenu class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/my-order">My Orders</a></li>
+         <ng-container *ngIf="appUser.isAdmin" >
+          <li><a class="dropdown-item" routerLink="admin/orders">Manage Orders</a></li>
+          <li><a class="dropdown-item" routerLink="admin/products">Manage Products</a></li>
+         </ng-container>
+            <li><a class="dropdown-item"  (click)="logout()" >Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+

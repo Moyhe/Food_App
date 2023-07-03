@@ -23,6 +23,11 @@
       "ES2022",
       "dom"
     ],
+    "paths": {
+      "shared/*": [
+        "app/shared/*"
+      ]
+    }
 
   },
   "angularCompilerOptions": {

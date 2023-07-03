@@ -1,0 +1,44 @@
+<form #f="ngForm">
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Name</label>
+    <input #name="ngModel" [(ngModel)]="shipping.name"  ngModel name="name" type="text" placeholder="name" class="form-control" id="name" required>
+    <div class="alert alert-danger" *ngIf="name.touched && name.invalid" role="alert">
+      <div *ngIf="name.errors?.['required']">Name is required</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="address">Address</label>
+    <div class="input-group mb-3">
+      <input #addressLine1="ngModel" [(ngModel)]="shipping.addressLine1"  placeholder="line1" ngModel name="address" type="text"  class="form-control" aria-label="Amount (to the nearest dollar)" required>
+    </div>
+    <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid" role="alert">
+        <div  *ngIf="addressLine1.errors?.['required']"> Address1 Is required </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="address"></label>
+    <div class="input-group mb-3">
+      <input #addressLine2="ngModel" [(ngModel)]="shipping.addressline2" placeholder="line2" ngModel name="address" type="text"  class="form-control" aria-label="Amount (to the nearest dollar)" required>
+    </div>
+    <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid" role="alert">
+      <div  *ngIf="addressLine1.errors?.['required']"> Address1 Is required </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="city" class="form-label">City</label>
+    <input #city="ngModel" [(ngModel)]="shipping.city" placeholder="city" ngModel name="city" type="text" class="form-control" id="city" required>
+    <div class="alert alert-danger" *ngIf="city.touched && city.invalid" role="alert">
+      <div  *ngIf="city.errors?.['required']">City is required</div>
+    </div>
+  </div>
+
+  <button
+  [class.disabled]="!f.valid"
+  (click)="placeOrder()"
+  class="btn btn-dark">Place Order</button>
+
+</form>
