@@ -1,4 +1,4 @@
-# FoodApp with angular 16 and firebase
+# FoodApp with angular 16, Bootstrap 5 and firebase
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
 
